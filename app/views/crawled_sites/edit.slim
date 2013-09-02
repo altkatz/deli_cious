@@ -1,0 +1,8 @@
+ul class="nav nav-tabs"
+  li = link_to "index", url(:crawled_sites, :index)
+  li = link_to "new", url(:crawled_sites, :new)
+  li class="active" = link_to "edit", url(:crawled_sites, :edit, :id => @crawled_site.id)
+
+div class="tabs-content"
+  - form_for :crawled_site, url(:crawled_sites, :update, :id => @crawled_site.id), :method => :patch, :class => 'form-horizontal' do |f|
+    = partial 'crawled_sites/form', :locals => { :f => f }

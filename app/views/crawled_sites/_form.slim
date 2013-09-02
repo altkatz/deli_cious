@@ -1,0 +1,27 @@
+fieldset class='controls-group'
+  = f.label :url, :class => 'control-label'
+  div class='controls'
+    = f.text_field :url
+    span class='help-inline' = "url"
+
+  = f.label :interval, :class => 'control-label'
+  div class='controls'
+    = f.text_field :interval
+    span class='help-inline' = "craw interval"
+
+  = f.label :crawlable, :class => 'control-label'
+  div class='controls'
+    = f.text_field :crawlable
+    span class='help-inline' = "crawlable time"
+
+  = f.label :rules, :class => 'control-label'
+  div class='controls'
+    = f.text_field :rules
+    span class='help-inline' = "crawling rules"
+
+div class="form-actions"
+  = f.submit "save", :class => 'btn btn-primary'
+  |&nbsp;
+  = f.submit "save_and_continue", :class => 'btn btn-info', :name => 'save_and_continue'
+  |&nbsp;
+  = link_to "cancel", url(:crawled_sites, :index), :class => 'btn'
