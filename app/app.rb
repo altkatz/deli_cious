@@ -4,8 +4,18 @@ module Eater
     register Padrino::Rendering
     register Padrino::Mailer
     register Padrino::Helpers
+    register Padrino::Admin::AccessControl
 
     enable :sessions
+
+    enable :authentication
+    enable :store_location
+    set    :login_page, "/admin"
+
+    access_control.roles_for :admin do |role|
+      p role
+      role.allow "/crawled_sites"
+    end
 
     ##
     # Caching support
