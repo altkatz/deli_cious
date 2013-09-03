@@ -16,8 +16,10 @@ def crawl_site site
   parents = Nokogiri::HTML(open(url)).css(rules["parents"])
 
   parents.each do |parent|
-    parent.css(img_rule)[0]["src"]
-    parent.css(title_rule)[0].content
-    parent.css(title_rule)[0]["href"]
+    Recipe.create(
+                 img_src: parent.css(img_rule)[0]["src"],
+                 title: parent.css(title_rule)[0].content,
+                 recipe_url: parent.css(title_rule)[0]["href"]
+                 )
   end
 end

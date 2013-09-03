@@ -1,0 +1,8 @@
+* 抓取下厨房 豆果美食等网站 并呈现
+** TODO to be implemented
+   - [X] 抓取规则管理后台 CRUD
+   - [X] 使用whenever定时抓取
+   - [ ] 使用sidekiq将抓取任务放入后台队列
+   - [ ] front end
+   - [ ] shopping cart
+   - [ ] user authentication
