@@ -1,26 +1,35 @@
-doctype 5
-html lang='en'
-  head
+ul class="nav nav-tabs"
+  li class="active" = link_to "index", url(:crawled_sites, :index)
+  li = link_to "new", url(:crawled_sites, :new)
 
-  body
-    ul class="nav nav-tabs"
-      li class="active" = link_to "index", url(:crawled_sites, :index)
-      li = link_to "new", url(:crawled_sites, :new)
+div class="tabs-content"
+  table class="table table-striped table-hover table-condensed" id="list"
+    thead
+      tr
+        th class='header list-menu'
+        th class='header' "url"
+        th class='header' "last crawled"
+        th class='header' "crawlable time"
+        th class='header' "interval"
+        th class='header' "rules"
 
-    div class="tabs-content"
-      table class="table table-striped table-hover table-condensed" id="list"
-        thead
-
-        tbody
-          -@crawled_sites.each do |site|
-            tr class='list-row'
-              td class='list-column list-selectable' = check_box_tag 'site_ids[]', :value => site.id, :class => 'list-selectable-checkbox'
-              td class='list-column' = site.url
-              td class='list-column' = site.last_crawled
-              td class='list-column' = site.crawlable
-              td class='list-column' = site.interval
-              td class='list-column' = site.rules
-              td class='list-column list-row-action'
-                div class='list-row-action-wrapper'
-                  = link_to "edit", :href => url(:crawled_sites, :edit, :id => site.id), :rel => :tooltip, :title => "edit", :class => 'list-row-action-wrapper-link'
-                  = link_to "trash", :rel => :tooltip, :title => "delete account", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+    tbody
+      -@crawled_sites.each do |site|
+        tr class='list-row'
+          td class='list-column list-selectable' = check_box_tag 'site_ids[]', :value => site.id, :class => 'list-selectable-checkbox'
+          td class='list-column' = site.url
+          td class='list-column' = site.last_crawled
+          td class='list-column' = site.crawlable
+          td class='list-column' = site.interval
+          td class='list-column' = site.rules
+          td class='list-column list-row-action'
+            div class='list-row-action-wrapper'
+              = link_to "edit", :href => url(:crawled_sites, :edit, :id => site.id), :rel => :tooltip, :title => "edit", :class => 'list-row-action-wrapper-link'
+              = link_to "trash", :rel => :tooltip, :title => "delete site", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              div class='popover list-row-action-popover-delete-one left'
+                div class='arrow'
+                h3 class='popover-title' = "delete site"
+                div class='popover-content'
+                  - form_tag url(:crawled_sites, :destroy, :id => site.id), :method => :delete do
+                    = submit_tag :delete, :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    div class='btn btn-small cancel' = "cancel"

@@ -48,4 +48,20 @@ Eater::App.controllers :crawled_sites do
     end
   end
 
+  delete :destroy, :with => :id do
+    @title = "Crawled_Sites"
+    crawled_site = CrawledSite.find(params[:id])
+    if crawled_site
+      if crawled_site.destroy
+        flash[:success] = "delete_success"
+      else
+        ""
+      end
+      redirect url(:crawled_sites, :index)
+    else
+      halt 404
+    end
+
+  end
+
 end
