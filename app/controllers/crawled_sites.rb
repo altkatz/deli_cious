@@ -1,13 +1,13 @@
 Eater::App.controllers :crawled_sites do
 
   get :index do
-    @title = "Sites"
+    @title = 'Sites'
     @crawled_sites = CrawledSite.all
     render 'crawled_sites/index'
   end
 
   get :new do
-    @title = "Add sites"
+    @title = 'Add sites'
     @crawled_site = CrawledSite.new
     render 'crawled_sites/new'
   end
@@ -15,16 +15,16 @@ Eater::App.controllers :crawled_sites do
   post :create do
     @crawled_site = CrawledSite.new(params[:crawled_site])
     if @crawled_site.save
-      flash[:success] = "site created"
+      flash[:success] = 'site created'
       redirect(url(:crawled_sites, :index))
     else
-      flash.now[:error] = "error creating site"
+      flash.now[:error] = 'error creating site'
       render 'crawled_sites/new'
     end
 
   end
 
-  get :edit, :with =>:id do
+  get :edit, with: :id do
     @crawled_site = CrawledSite.find(params[:id])
     if @crawled_site
       render 'crawled_sites/edit'
@@ -33,13 +33,15 @@ Eater::App.controllers :crawled_sites do
     end
   end
 
-  patch :update, :with =>:id do
+  patch :update, with: :id do
     @crawled_site = CrawledSite.find(params[:id])
     if @crawled_site
       if @crawled_site.update_attributes(params[:crawled_site])
-        params[:save_and_continue] ?
-        redirect(url(:crawled_sites, :index)) :
-          redirect(url(:crawled_sites, :edit, :id => @crawled_site.id))
+        if params[:save_and_continue]
+          redirect(url(:crawled_sites, :index))
+        else
+          redirect(url(:crawled_sites, :edit, id: @crawled_site.id))
+        end
       else
         render 'crawled_sites/edit'
       end
@@ -48,14 +50,14 @@ Eater::App.controllers :crawled_sites do
     end
   end
 
-  delete :destroy, :with => :id do
-    @title = "Crawled_Sites"
+  delete :destroy, with: :id do
+    @title = 'Crawled_Sites'
     crawled_site = CrawledSite.find(params[:id])
     if crawled_site
       if crawled_site.destroy
-        flash[:success] = "delete_success"
+        flash[:success] = 'delete_success'
       else
-        ""
+        ''
       end
       redirect url(:crawled_sites, :index)
     else

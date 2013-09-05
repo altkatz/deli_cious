@@ -26,6 +26,8 @@ gem 'sidekiq'
 group :development do
   gem "pry"
   gem "rubocop"
+  gem 'guard'
+  gem 'guard-rubocop'
 end
 
 group :test do
