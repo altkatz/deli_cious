@@ -1,0 +1,9 @@
+div class="g-dish-list"
+  ul
+    -@recipes.each do |recipe|
+      li
+        div class="g-dish-list-img"
+          = image_tag(recipe.img_src)
+          = link_to "recipe", recipe.recipe_url
+        div class=""
+          = recipe.recipe_content.html_safe

@@ -13,7 +13,6 @@ module Eater
     set    :login_page, "/admin"
 
     access_control.roles_for :admin do |role|
-      p role
       role.allow "/crawled_sites"
     end
 
