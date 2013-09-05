@@ -21,6 +21,19 @@ gem 'pg'
 
 gem 'whenever', :require => false
 gem 'nokogiri'
+gem 'sidekiq'
+
+group :development do
+  gem "pry"
+  gem "rubocop"
+end
+
+group :test do
+  gem "rack-test"
+  gem "factory_girl"
+  gem "awesome_print"
+  gem "mocha", :require => false
+end
 
 # Test requirements
 
