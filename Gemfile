@@ -22,6 +22,7 @@ gem 'pg'
 gem 'whenever', :require => false
 gem 'nokogiri'
 gem 'sidekiq'
+gem 'unicorn'
 
 group :development do
   gem "pry"
