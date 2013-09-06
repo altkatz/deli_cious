@@ -23,6 +23,7 @@ gem 'whenever', :require => false
 gem 'nokogiri'
 gem 'sidekiq'
 gem 'unicorn'
+gem 'foreman'
 
 group :development do
   gem "pry"
